@@ -7,6 +7,13 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     
+    <!-- Monetag Popunder Ad Script -->
+    <script src="https://5gvci.com/act/files/tag.min.js?z=11054162" data-cfasync="false" async></script>
+    
+    <!-- Monetag Interstitial Ad Placeholder -->
+    <!-- Yahan apna Interstitial zone ka script tag paste karein jo Monetag dega -->
+    <!-- <script src="https://.../tag.min.js?z=YOUR_INTERSTITIAL_ZONE" data-cfasync="false" async></script> -->
+
     <script>
         tailwind.config = {
             theme: {
@@ -147,6 +154,14 @@
         <main id="main-content" class="flex-grow flex flex-col p-6 relative z-10 w-full overflow-hidden">
             <!-- UI Injected Here -->
         </main>
+        
+        <!-- Banner Ad Footer -->
+        <footer class="mt-auto border-t border-cine-gold/10 p-3 text-center z-20 relative w-full bg-cine-dark/80 backdrop-blur-sm">
+            <div id="ad-banner-placeholder" class="min-h-[50px] flex justify-center items-center w-full">
+                <!-- Monetag Banner Ad Script -->
+                <script>(function(s){s.dataset.zone='11054149',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+            </div>
+        </footer>
     </div>
 
     <script>
@@ -1075,6 +1090,19 @@
 
     function startLevel(levelNum) {
         if (!validateLevelData(levelNum)) return;
+
+        // --- Interstitial Ad Trigger Logic ---
+        // Jab user 'Next Level' click karega toh yeh chalega
+        console.log("Next Level clicked. Triggering Interstitial Ad...");
+        
+        // Agar Monetag ne koi specific function diya hai (jaise showInterstitialAd()), 
+        // toh aap use yahan uncomment karke call kar sakte hain. Wese zyada tar Monetag 
+        // script tag (jo head mein lagta hai) automatically click events pakar leta hai.
+        if (typeof showInterstitialAd === 'function') {
+            showInterstitialAd(); 
+        }
+        // -------------------------------------
+
         currentLevel = levelNum;
         currentQuestionIndex = 0;
         currentLevelScore = 0;
